@@ -1,6 +1,12 @@
 import zmq
+import sys
 import time
 from node_list import NodeList
+
+def print_out ( str ):
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 class main():
 
@@ -15,7 +21,7 @@ class main():
 
 		try:	
 			cmd_message = cmd_receiver.recv(zmq.NOBLOCK)
-			print(cmd_message)
+			print_out(cmd_message)
 		except zmq.ZMQError, e:
 			pass
 

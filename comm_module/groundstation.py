@@ -1,6 +1,12 @@
 import zmq
+import sys
 import time
 from node_list import NodeList
+
+def print_out ( str ):
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 def main():
 	
@@ -19,7 +25,7 @@ def main():
 	
 		try:
 			message = groundstation_receiver.recv(zmq.NOBLOCK)
-			print("GS: TELEMETRY: %s"%message)
+			print_out("GS: TELEMETRY: %s"%message)
 		except zmq.ZMQError, e:
 			pass
 

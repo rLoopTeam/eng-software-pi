@@ -2,7 +2,13 @@ import zmq
 import random
 import time
 import threading
+import sys
 from node_list import NodeList
+
+def print_out ( str ):
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 def main():
 
@@ -13,7 +19,7 @@ def main():
 
 	while True:
 		message = str(random.random()*100)
-		print("TELE: TELEMETRY: %s"%message)
+		print_out("TELE: TELEMETRY: %s"%message)
 		comm_sender.send(message)
 		time.sleep(1)
 

@@ -1,6 +1,12 @@
 import zmq
+import sys
 import time
 from node_list import NodeList
+
+def print_out ( str ):
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 def main():
 
@@ -26,20 +32,20 @@ def main():
 
 		try:	
 			comm_message = comm_receiver.recv(zmq.NOBLOCK)
-			print("COMM: %s"%comm_message)
+			print_out("COMM: %s"%comm_message)
 		except zmq.ZMQError, e:
 			pass
 
 		try:	
 			gs_message = gs_receiver.recv(zmq.NOBLOCK)
 			cmd_sender.send(gs_message)
-			print("COMM: COMMAND: %s"%gs_message)
+			print_out("COMM: COMMAND: %s"%gs_message)
 		except zmq.ZMQError, e:
 			pass
 
 		try:	
 			tele_message = tele_receiver.recv(zmq.NOBLOCK)
-			print("COMM: TELEMETRY: %s"%tele_message)
+			print_out("COMM: TELEMETRY: %s"%tele_message)
 		except zmq.ZMQError, e:
 			pass
 
