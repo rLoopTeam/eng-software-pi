@@ -1,6 +1,12 @@
 import zmq
+import sys
 import time
 from node_list import NodeList
+
+def print_out ( str ):
+        sys.stdout.write( str )
+        sys.stdout.write( "\n" )
+        sys.stdout.flush()
 
 def main():
 	
@@ -15,11 +21,11 @@ def main():
 
 		command = "MOVE_FORWARD"
 		groundstation_sender.send(command)
-		print("GS: COMMAND: %s"%command)
+		print_out("GS: COMMAND: %s"%command)
 	
 		try:
 			message = groundstation_receiver.recv(zmq.NOBLOCK)
-			print("GS: TELEMETRY: %s"%message)
+			print_out("GS: TELEMETRY: %s"%message)
 		except zmq.ZMQError, e:
 			pass
 
