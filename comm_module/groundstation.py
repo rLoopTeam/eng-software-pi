@@ -4,9 +4,9 @@ import time
 from node_list import NodeList
 
 def print_out ( str ):
-        sys.stdout.write( str )
-        sys.stdout.write( "\n" )
-        sys.stdout.flush()
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 def main():
 	
