@@ -1,0 +1,3 @@
+class MessageList()
+	def __init__(self):
+		self.message_list = {'1':'hello'}

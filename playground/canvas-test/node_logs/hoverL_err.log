@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 45, in <module>
+    main()
+  File "nodes/hoverL.py", line 22, in main
+    canvas.send(sender, message_id, message_data)
+NameError: global name 'message_id' is not defined
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 45, in <module>
+    main()
+  File "nodes/hoverL.py", line 22, in main
+    canvas.send(sender, message_id, message_data)
+NameError: global name 'message_id' is not defined
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 45, in <module>
+    main()
+  File "nodes/hoverL.py", line 22, in main
+    canvas.send(sender, message_id, message_data)
+NameError: global name 'message_id' is not defined
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 45, in <module>
+    main()
+  File "nodes/hoverL.py", line 22, in main
+    canvas.send(sender, message_id, message_data)
+NameError: global name 'message_id' is not defined
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 31, in <module>
+    main()
+  File "nodes/hoverL.py", line 20, in main
+    if (msg_id == ml.messages['hover_engine_status']['id']):
+NameError: global name 'ml' is not defined
+Traceback (most recent call last):
+  File "nodes/hoverL.py", line 36, in <module>
+    main()
+  File "nodes/hoverL.py", line 30, in main
+    canvas.send(sender, ml.messages['tilt_l']['id'], data)
+NameError: global name 'data' is not defined
