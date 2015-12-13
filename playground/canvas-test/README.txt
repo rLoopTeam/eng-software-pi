@@ -11,7 +11,7 @@ How to use
 2. In another terminal, call the send_command script with any of the following arguments:
 	a. get_engine_status
 	a. start - pod initialisation sequence. Starts hover engines, checks statuses etc
-	c. move - x is the speed you want. set it to whatever, and the hover engines will tilt to the required angle to achieve said speed
+	c. move x - x is the speed you want. set it to whatever, and the hover engines will tilt to the required angle to achieve said speed
 	b. stop
 These are the commands we use to control the pod. THe functions are sent over the CAN network. The pod responds with a status which also travels over CAN.
 	
