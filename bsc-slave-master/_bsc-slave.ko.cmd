@@ -1,0 +1,1 @@
+cmd_/home/pi/Downloads/bsc-slave-master/bsc-slave.ko := ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /home/pi/Downloads/bsc-slave-master/bsc-slave.ko /home/pi/Downloads/bsc-slave-master/bsc-slave.o /home/pi/Downloads/bsc-slave-master/bsc-slave.mod.o
