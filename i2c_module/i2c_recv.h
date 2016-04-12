@@ -1,3 +1,4 @@
+//Written by Peter S. Gschladt (psg1337) for rLoop
 #ifndef __I2CRECV_INCLUDED
 #define __I2CRECV_INCLUDED
 
@@ -7,14 +8,11 @@
 #include <fcntl.h>
 #include <iostream>
 
-//not used atm
-//#define I2C_SEPARATOR 	0x20	//separator for values in the stream
-
 //read from filedescriptor
 int i2c_frametobuf(int &fd, char* const buffer, int buf_size){
 	int bytecount=0;
 	bool soframe = false;
-	//fill the passed buffer with separators
+	//fill the passed buffer with 0x00s
 	memset(buffer, 0x00, buf_size);
 	while(1){
 		char byte[1];
@@ -24,13 +22,13 @@ int i2c_frametobuf(int &fd, char* const buffer, int buf_size){
 	     		return -1-bytecount;
 	  	}
 	  	//detect start of frame
-  		if((*byte == 0x02) && !soframe){
+  		if((*byte == 0x02) && !soframe){	//this works assuming 0x02 means start of frame
   			soframe = true;
   			printf("start of frame\n");
   			continue;
   		}
   		//detect end of frame
-  		if((*byte == 0x00) && soframe){
+  		if((*byte == 0x00) && soframe){		//this works assuming 0x00 means end of frame
   			printf("end of frame\n");
   			break;
   		}
