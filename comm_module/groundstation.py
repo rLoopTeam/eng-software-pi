@@ -1,7 +1,13 @@
 import socket
 import zmq
+import sys
 import time
 import node_list as nl
+
+def print_out ( str ):
+	sys.stdout.write( str )
+	sys.stdout.write( "\n" )
+	sys.stdout.flush()
 
 def main():
 	
@@ -23,12 +29,12 @@ def main():
 	while True:
 		command = "MOVE_FORWARD"
 		groundstation_sender.send(command)
-		print("GS: COMMAND: %s"%command)
+		print_out("GS: COMMAND: %s"%command)
 	
 		try:
 
 			message, addr = groundstation_receiver.recvfrom(1024) # buffer size is 1024 bytes
-			print("GS: TELEMETRY: %s"%message)
+			print_out("GS: TELEMETRY: %s"%message)
 		except zmq.ZMQError, e:
 			pass
 
@@ -37,6 +43,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-
-

@@ -1,0 +1,454 @@
+1970-01-01 18:34:27,269 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:34:27,947 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:34:27,960 INFO daemonizing the supervisord process
+1970-01-01 18:34:27,964 INFO supervisord started with pid 1586
+1970-01-01 18:34:28,991 INFO spawned: 'node1' with pid 1587
+1970-01-01 18:34:29,031 INFO spawned: 'node2' with pid 1588
+1970-01-01 18:34:29,101 INFO spawned: 'canvas_server' with pid 1589
+1970-01-01 18:34:30,109 INFO success: node1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:34:30,111 INFO success: node2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:34:30,112 INFO success: canvas_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:35:04,579 WARN received SIGTERM indicating exit request
+1970-01-01 18:35:04,588 INFO waiting for node1, node2, canvas_server to die
+1970-01-01 18:35:04,594 INFO stopped: canvas_server (terminated by SIGTERM)
+1970-01-01 18:35:04,610 INFO stopped: node2 (terminated by SIGTERM)
+1970-01-01 18:35:04,623 INFO stopped: node1 (terminated by SIGTERM)
+1970-01-01 18:36:15,177 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:36:15,863 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:36:15,866 INFO supervisord started with pid 1601
+1970-01-01 18:36:16,883 INFO spawned: 'node1' with pid 1604
+1970-01-01 18:36:16,928 INFO spawned: 'node2' with pid 1605
+1970-01-01 18:36:17,011 INFO spawned: 'canvas_server' with pid 1606
+1970-01-01 18:36:18,020 INFO success: node1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:36:18,023 INFO success: node2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:36:18,031 INFO success: canvas_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:37:13,015 WARN received SIGINT indicating exit request
+1970-01-01 18:37:13,025 INFO waiting for node1, node2, canvas_server to die
+1970-01-01 18:37:13,032 INFO stopped: canvas_server (terminated by SIGTERM)
+1970-01-01 18:37:13,049 INFO stopped: node2 (terminated by SIGTERM)
+1970-01-01 18:37:13,063 INFO stopped: node1 (terminated by SIGTERM)
+1970-01-01 18:38:32,842 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:38:33,590 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:38:33,593 INFO supervisord started with pid 1617
+1970-01-01 18:38:34,620 INFO spawned: 'node1' with pid 1620
+1970-01-01 18:38:34,671 INFO spawned: 'node2' with pid 1621
+1970-01-01 18:38:34,741 INFO spawned: 'canvas_server' with pid 1622
+1970-01-01 18:38:35,750 INFO success: node1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:38:35,753 INFO success: node2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:38:35,771 INFO success: canvas_server entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:39:39,327 WARN received SIGINT indicating exit request
+1970-01-01 18:39:39,331 DEBG killing canvas_server (pid 1622) with signal SIGTERM
+1970-01-01 18:39:39,339 INFO waiting for node1, node2, canvas_server to die
+1970-01-01 18:39:39,344 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 3059585712 for <Subprocess at 3059832512 with name canvas_server in state STOPPING> (stdout)>
+1970-01-01 18:39:39,347 DEBG fd 20 closed, stopped monitoring <POutputDispatcher at 3059585752 for <Subprocess at 3059832512 with name canvas_server in state STOPPING> (stderr)>
+1970-01-01 18:39:39,351 INFO stopped: canvas_server (terminated by SIGTERM)
+1970-01-01 18:39:39,354 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:39:39,358 DEBG killing node2 (pid 1621) with signal SIGTERM
+1970-01-01 18:39:39,368 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 3059585392 for <Subprocess at 3059866320 with name node2 in state STOPPING> (stdout)>
+1970-01-01 18:39:39,372 DEBG fd 15 closed, stopped monitoring <POutputDispatcher at 3059585432 for <Subprocess at 3059866320 with name node2 in state STOPPING> (stderr)>
+1970-01-01 18:39:39,375 INFO stopped: node2 (terminated by SIGTERM)
+1970-01-01 18:39:39,377 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:39:39,381 DEBG killing node1 (pid 1620) with signal SIGTERM
+1970-01-01 18:39:39,389 DEBG fd 9 closed, stopped monitoring <POutputDispatcher at 3060051640 for <Subprocess at 3059833392 with name node1 in state STOPPING> (stderr)>
+1970-01-01 18:39:39,393 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 3060051880 for <Subprocess at 3059833392 with name node1 in state STOPPING> (stdout)>
+1970-01-01 18:39:39,396 INFO stopped: node1 (terminated by SIGTERM)
+1970-01-01 18:39:39,398 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:43:49,843 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:43:50,612 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:43:50,615 INFO supervisord started with pid 1653
+1970-01-01 18:43:51,632 INFO spawned: 'tele_module' with pid 1657
+1970-01-01 18:43:51,681 INFO spawned: 'comm_module' with pid 1658
+1970-01-01 18:43:51,751 INFO spawned: 'cmd_module' with pid 1659
+1970-01-01 18:43:52,766 INFO success: tele_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:43:52,769 INFO success: comm_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:43:52,781 INFO success: cmd_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:44:43,814 WARN received SIGINT indicating exit request
+1970-01-01 18:44:43,818 DEBG killing cmd_module (pid 1659) with signal SIGTERM
+1970-01-01 18:44:43,827 INFO waiting for tele_module, comm_module, cmd_module to die
+1970-01-01 18:44:43,832 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 3059319392 for <Subprocess at 3059566232 with name cmd_module in state STOPPING> (stdout)>
+1970-01-01 18:44:43,835 DEBG fd 20 closed, stopped monitoring <POutputDispatcher at 3059319432 for <Subprocess at 3059566232 with name cmd_module in state STOPPING> (stderr)>
+1970-01-01 18:44:43,838 INFO stopped: cmd_module (terminated by SIGTERM)
+1970-01-01 18:44:43,841 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:44:43,844 DEBG killing comm_module (pid 1658) with signal SIGTERM
+1970-01-01 18:44:43,854 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 3059319072 for <Subprocess at 3059567112 with name comm_module in state STOPPING> (stdout)>
+1970-01-01 18:44:43,857 DEBG fd 15 closed, stopped monitoring <POutputDispatcher at 3059319112 for <Subprocess at 3059567112 with name comm_module in state STOPPING> (stderr)>
+1970-01-01 18:44:43,860 INFO stopped: comm_module (terminated by SIGTERM)
+1970-01-01 18:44:43,863 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:44:43,866 DEBG killing tele_module (pid 1657) with signal SIGTERM
+1970-01-01 18:44:43,875 DEBG fd 9 closed, stopped monitoring <POutputDispatcher at 3059785520 for <Subprocess at 3059600000 with name tele_module in state STOPPING> (stderr)>
+1970-01-01 18:44:43,878 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 3059785560 for <Subprocess at 3059600000 with name tele_module in state STOPPING> (stdout)>
+1970-01-01 18:44:43,881 INFO stopped: tele_module (terminated by SIGTERM)
+1970-01-01 18:44:43,884 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:47:06,784 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:47:07,467 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:47:07,470 INFO supervisord started with pid 1678
+1970-01-01 18:47:08,487 INFO spawned: 'tele_module' with pid 1681
+1970-01-01 18:47:08,527 INFO spawned: 'comm_module' with pid 1682
+1970-01-01 18:47:08,588 INFO spawned: 'cmd_module' with pid 1683
+1970-01-01 18:47:09,627 INFO success: tele_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:47:09,640 INFO success: comm_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:47:09,661 INFO success: cmd_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:47:12,410 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 53.2518955667
+
+1970-01-01 18:47:13,543 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 85.5470823946
+
+1970-01-01 18:47:14,544 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 23.5529707555
+
+1970-01-01 18:47:15,545 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 40.7586152537
+
+1970-01-01 18:47:16,547 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 48.3436620871
+
+1970-01-01 18:47:17,548 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 87.2205397546
+
+1970-01-01 18:47:18,551 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 58.6716023194
+
+1970-01-01 18:47:19,552 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 46.7171207006
+
+1970-01-01 18:47:20,553 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 9.96599264765
+
+1970-01-01 18:47:21,555 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 28.0410452372
+
+1970-01-01 18:47:22,292 WARN received SIGINT indicating exit request
+1970-01-01 18:47:22,296 DEBG killing cmd_module (pid 1683) with signal SIGTERM
+1970-01-01 18:47:22,304 INFO waiting for tele_module, comm_module, cmd_module to die
+1970-01-01 18:47:22,309 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 3059810912 for <Subprocess at 3060057752 with name cmd_module in state STOPPING> (stdout)>
+1970-01-01 18:47:22,312 DEBG fd 20 closed, stopped monitoring <POutputDispatcher at 3059810952 for <Subprocess at 3060057752 with name cmd_module in state STOPPING> (stderr)>
+1970-01-01 18:47:22,315 INFO stopped: cmd_module (terminated by SIGTERM)
+1970-01-01 18:47:22,318 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:47:22,322 DEBG killing comm_module (pid 1682) with signal SIGTERM
+1970-01-01 18:47:22,331 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 3059810592 for <Subprocess at 3060058632 with name comm_module in state STOPPING> (stdout)>
+1970-01-01 18:47:22,334 DEBG fd 15 closed, stopped monitoring <POutputDispatcher at 3059810632 for <Subprocess at 3060058632 with name comm_module in state STOPPING> (stderr)>
+1970-01-01 18:47:22,337 INFO stopped: comm_module (terminated by SIGTERM)
+1970-01-01 18:47:22,340 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:47:22,343 DEBG killing tele_module (pid 1681) with signal SIGTERM
+1970-01-01 18:47:22,352 DEBG fd 9 closed, stopped monitoring <POutputDispatcher at 3060277040 for <Subprocess at 3060091520 with name tele_module in state STOPPING> (stderr)>
+1970-01-01 18:47:22,355 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 3060277080 for <Subprocess at 3060091520 with name tele_module in state STOPPING> (stdout)>
+1970-01-01 18:47:22,358 INFO stopped: tele_module (terminated by SIGTERM)
+1970-01-01 18:47:22,361 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:49:01,749 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:49:02,426 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:49:02,429 INFO supervisord started with pid 1694
+1970-01-01 18:49:03,447 INFO spawned: 'tele_module' with pid 1697
+1970-01-01 18:49:03,488 INFO spawned: 'comm_module' with pid 1698
+1970-01-01 18:49:03,548 INFO spawned: 'cmd_module' with pid 1699
+1970-01-01 18:49:04,588 INFO success: tele_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:49:04,591 INFO success: comm_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:49:04,601 INFO success: cmd_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:49:07,378 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 56.4668599863
+
+1970-01-01 18:49:08,448 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 17.7035329049
+
+1970-01-01 18:49:08,456 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 56.4668599863
+
+1970-01-01 18:49:09,449 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 56.0384538928
+
+1970-01-01 18:49:09,457 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 17.7035329049
+
+1970-01-01 18:49:10,451 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 1.74425247957
+
+1970-01-01 18:49:10,458 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 56.0384538928
+
+1970-01-01 18:49:11,452 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 95.5459633785
+
+1970-01-01 18:49:11,460 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 1.74425247957
+
+1970-01-01 18:49:12,454 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 56.653107931
+
+1970-01-01 18:49:12,462 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 95.5459633785
+
+1970-01-01 18:49:13,456 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 42.1148474296
+
+1970-01-01 18:49:13,464 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 56.653107931
+
+1970-01-01 18:49:14,457 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 45.0747456057
+
+1970-01-01 18:49:14,466 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 42.1148474296
+
+1970-01-01 18:49:15,459 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 90.4096384797
+
+1970-01-01 18:49:15,468 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 45.0747456057
+
+1970-01-01 18:49:16,461 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 79.4916542832
+
+1970-01-01 18:49:16,471 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 90.4096384797
+
+1970-01-01 18:49:17,461 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 73.7198329556
+
+1970-01-01 18:49:17,473 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 79.4916542832
+
+1970-01-01 18:49:18,463 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 40.3141399965
+
+1970-01-01 18:49:18,475 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 73.7198329556
+
+1970-01-01 18:49:19,464 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 5.07329904887
+
+1970-01-01 18:49:19,478 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 40.3141399965
+
+1970-01-01 18:49:20,466 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 69.8375482114
+
+1970-01-01 18:49:20,481 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 5.07329904887
+
+1970-01-01 18:49:21,467 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 20.7392761992
+
+1970-01-01 18:49:21,483 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 69.8375482114
+
+1970-01-01 18:49:22,469 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 53.3565937648
+
+1970-01-01 18:49:22,485 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 20.7392761992
+
+1970-01-01 18:49:23,471 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 2.71539863413
+
+1970-01-01 18:49:23,488 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 53.3565937648
+
+1970-01-01 18:49:24,473 WARN received SIGINT indicating exit request
+1970-01-01 18:49:24,478 DEBG killing cmd_module (pid 1699) with signal SIGTERM
+1970-01-01 18:49:24,486 INFO waiting for tele_module, comm_module, cmd_module to die
+1970-01-01 18:49:24,493 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 75.2840148803
+
+1970-01-01 18:49:24,497 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 2.71539863413
+
+1970-01-01 18:49:24,499 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 3059008096 for <Subprocess at 3059254936 with name cmd_module in state STOPPING> (stdout)>
+1970-01-01 18:49:24,502 DEBG fd 20 closed, stopped monitoring <POutputDispatcher at 3059008136 for <Subprocess at 3059254936 with name cmd_module in state STOPPING> (stderr)>
+1970-01-01 18:49:24,506 INFO stopped: cmd_module (terminated by SIGTERM)
+1970-01-01 18:49:24,508 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:49:24,512 DEBG killing comm_module (pid 1698) with signal SIGTERM
+1970-01-01 18:49:24,521 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 3059007776 for <Subprocess at 3059255816 with name comm_module in state STOPPING> (stdout)>
+1970-01-01 18:49:24,524 DEBG fd 15 closed, stopped monitoring <POutputDispatcher at 3059007816 for <Subprocess at 3059255816 with name comm_module in state STOPPING> (stderr)>
+1970-01-01 18:49:24,528 INFO stopped: comm_module (terminated by SIGTERM)
+1970-01-01 18:49:24,530 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:49:24,534 DEBG killing tele_module (pid 1697) with signal SIGTERM
+1970-01-01 18:49:24,543 DEBG fd 9 closed, stopped monitoring <POutputDispatcher at 3059474224 for <Subprocess at 3059288704 with name tele_module in state STOPPING> (stderr)>
+1970-01-01 18:49:24,545 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 3059474264 for <Subprocess at 3059288704 with name tele_module in state STOPPING> (stdout)>
+1970-01-01 18:49:24,548 INFO stopped: tele_module (terminated by SIGTERM)
+1970-01-01 18:49:24,551 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:51:24,032 CRIT Supervisor running as root (no user in config file)
+1970-01-01 18:51:24,721 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+1970-01-01 18:51:24,724 INFO supervisord started with pid 1712
+1970-01-01 18:51:25,751 INFO spawned: 'tele_module' with pid 1715
+1970-01-01 18:51:25,801 INFO spawned: 'comm_module' with pid 1716
+1970-01-01 18:51:25,851 INFO spawned: 'cmd_module' with pid 1717
+1970-01-01 18:51:25,941 INFO spawned: 'ground_station' with pid 1718
+1970-01-01 18:51:26,966 INFO success: tele_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:51:26,969 INFO success: comm_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:51:26,991 INFO success: cmd_module entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:51:26,993 INFO success: ground_station entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+1970-01-01 18:51:30,991 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 88.5050527746
+
+1970-01-01 18:51:31,094 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 88.5050527746
+
+1970-01-01 18:51:32,089 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 22.2755547352
+
+1970-01-01 18:51:32,105 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 22.2755547352
+
+1970-01-01 18:51:32,134 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:33,092 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 93.8688655996
+
+1970-01-01 18:51:33,107 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 93.8688655996
+
+1970-01-01 18:51:34,093 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 85.6414208454
+
+1970-01-01 18:51:34,109 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 85.6414208454
+
+1970-01-01 18:51:34,138 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:35,095 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 29.3778224819
+
+1970-01-01 18:51:35,111 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 29.3778224819
+
+1970-01-01 18:51:36,096 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 54.3787931895
+
+1970-01-01 18:51:36,113 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 54.3787931895
+
+1970-01-01 18:51:36,141 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:37,098 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 75.9690277058
+
+1970-01-01 18:51:37,115 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 75.9690277058
+
+1970-01-01 18:51:38,100 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 67.9479989003
+
+1970-01-01 18:51:38,118 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 67.9479989003
+
+1970-01-01 18:51:38,144 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:39,101 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 79.7739574317
+
+1970-01-01 18:51:39,120 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 79.7739574317
+
+1970-01-01 18:51:40,103 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 19.0611157048
+
+1970-01-01 18:51:40,123 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 19.0611157048
+
+1970-01-01 18:51:40,147 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:41,105 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 97.9993758545
+
+1970-01-01 18:51:41,125 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 97.9993758545
+
+1970-01-01 18:51:42,106 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 0.563774297422
+
+1970-01-01 18:51:42,128 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 0.563774297422
+
+1970-01-01 18:51:42,150 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:43,108 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 4.88830995766
+
+1970-01-01 18:51:43,131 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 4.88830995766
+
+1970-01-01 18:51:44,110 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 16.6088037327
+
+1970-01-01 18:51:44,133 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 16.6088037327
+
+1970-01-01 18:51:44,154 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:45,111 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 96.1682814894
+
+1970-01-01 18:51:45,136 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 96.1682814894
+
+1970-01-01 18:51:46,113 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 8.96607140181
+
+1970-01-01 18:51:46,139 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 8.96607140181
+
+1970-01-01 18:51:46,157 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:47,115 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 79.3586533059
+
+1970-01-01 18:51:47,141 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 79.3586533059
+
+1970-01-01 18:51:48,116 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 94.7969775914
+
+1970-01-01 18:51:48,143 DEBG 'comm_module' stdout output:
+COMM: COMMAND: MOVE_FORWARD
+COMM: TELEMETRY: 94.7969775914
+
+1970-01-01 18:51:48,160 DEBG 'cmd_module' stdout output:
+MOVE_FORWARD
+
+1970-01-01 18:51:49,118 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 2.7539579918
+
+1970-01-01 18:51:49,145 DEBG 'comm_module' stdout output:
+COMM: TELEMETRY: 2.7539579918
+
+1970-01-01 18:51:50,040 WARN received SIGINT indicating exit request
+1970-01-01 18:51:50,044 DEBG killing ground_station (pid 1718) with signal SIGTERM
+1970-01-01 18:51:50,051 INFO waiting for tele_module, comm_module, cmd_module, ground_station to die
+1970-01-01 18:51:50,058 DEBG fd 21 closed, stopped monitoring <POutputDispatcher at 3059016848 for <Subprocess at 3059293280 with name ground_station in state STOPPING> (stdout)>
+1970-01-01 18:51:50,061 DEBG fd 25 closed, stopped monitoring <POutputDispatcher at 3059016888 for <Subprocess at 3059293280 with name ground_station in state STOPPING> (stderr)>
+1970-01-01 18:51:50,065 INFO stopped: ground_station (terminated by SIGTERM)
+1970-01-01 18:51:50,067 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:51:50,071 DEBG killing cmd_module (pid 1717) with signal SIGTERM
+1970-01-01 18:51:50,081 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 3059016528 for <Subprocess at 3059255416 with name cmd_module in state STOPPING> (stdout)>
+1970-01-01 18:51:50,084 DEBG fd 20 closed, stopped monitoring <POutputDispatcher at 3059016568 for <Subprocess at 3059255416 with name cmd_module in state STOPPING> (stderr)>
+1970-01-01 18:51:50,087 INFO stopped: cmd_module (terminated by SIGTERM)
+1970-01-01 18:51:50,090 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:51:50,094 DEBG killing comm_module (pid 1716) with signal SIGTERM
+1970-01-01 18:51:50,104 DEBG fd 10 closed, stopped monitoring <POutputDispatcher at 3059016208 for <Subprocess at 3059256296 with name comm_module in state STOPPING> (stdout)>
+1970-01-01 18:51:50,107 DEBG fd 15 closed, stopped monitoring <POutputDispatcher at 3059016248 for <Subprocess at 3059256296 with name comm_module in state STOPPING> (stderr)>
+1970-01-01 18:51:50,110 INFO stopped: comm_module (terminated by SIGTERM)
+1970-01-01 18:51:50,113 DEBG received SIGCLD indicating a child quit
+1970-01-01 18:51:50,116 DEBG killing tele_module (pid 1715) with signal SIGTERM
+1970-01-01 18:51:50,126 DEBG fd 9 closed, stopped monitoring <POutputDispatcher at 3059015768 for <Subprocess at 3059293360 with name tele_module in state STOPPING> (stderr)>
+1970-01-01 18:51:50,129 DEBG 'tele_module' stdout output:
+TELE: TELEMETRY: 17.3579985366
+
+1970-01-01 18:51:50,133 DEBG fd 7 closed, stopped monitoring <POutputDispatcher at 3059482456 for <Subprocess at 3059293360 with name tele_module in state STOPPING> (stdout)>
+1970-01-01 18:51:50,136 INFO stopped: tele_module (terminated by SIGTERM)
+1970-01-01 18:51:50,138 DEBG received SIGCLD indicating a child quit
