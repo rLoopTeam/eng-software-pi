@@ -8,7 +8,7 @@
 //i2c includes
 #include <sys/ioctl.h>
 #include <fcntl.h>
-#include "i2c_recv.h"		//header for i2c functions
+#include "i2c_recvbin.h"	//header for i2c functions
 #include "bsc-slave.h"		//i2c slave header
 
 //zmq defines
@@ -19,14 +19,18 @@
 #define SLV_ADDR  	 0x33
 
 
-//function for sending a specified string out on a specified socket
-void send(zmq::socket_t &sender, std::string &buffer){
+//function for sending the frame retrieved over i2c
+int sendframe(zmq::socket_t & socket, const unsigned char* const buffer, int size) {
 	try {
-		s_send(sender, buffer);
+		zmq::message_t message(size);
+		memcpy (message.data(), buffer, size);
+		int bytessent = socket.send (message);
+		return bytessent;
 	}
 	catch (zmq::error_t e) {
-//MISSING: investigate if EAGAIN throw is caught by language binding
-		std::cout << "ERROR while sending: " << zmq_strerror(e.num()) << std::endl;
+	//MISSING: investigate if EAGAIN throw is caught by language binding
+			std::cout << "ERROR while sending: " << zmq_strerror(e.num()) << std::endl;
+			return -1;
 	}
 }
 
@@ -34,10 +38,10 @@ int main(){
 	//signal catcher from zhelpers.hpp
 	s_catch_signals();
 	
-	int i2c_fd; 			//i2c filedescriptor
-	std::string buffer;		//our buffer
-	const int maxbytes = 50;	//maximum count of bytes received from i2c
-	int bytecount;			//how many bytes we have received from i2c
+	int i2c_fd; 				//i2c filedescriptor
+	const int maxbytes = 512;		//maximum count of bytes received from i2c
+	unsigned char buffer[maxbytes];		//our buffer
+	int bytecount;				//how many bytes we have received from i2c
 	
 // SOCKETS
 	//create zmq context
@@ -72,14 +76,19 @@ int main(){
   	}
   	*/
   	//TEST: initialize the i2c file descriptor to read from a test file
-	if((i2c_fd = open("test.txt", O_RDONLY)) == -1){
+	if((i2c_fd = open("testframe.txt", O_RDONLY)) == -1){
 		std::cout << "error while trying to open file" << std::endl;
 		return -1;
 	}
 	
 // MAIN LOOP
 	while(1){
+		//if an interrupt is detected, break the loop /pun intended
+		if(s_interrupted){
+			break;
+		}
 		bool rc;
+		bytecount = 0;
 		//prioritize incoming commands from command process
 		/* COMMENTED OUT since command module isn't functional yet.
 		do{
@@ -97,20 +106,20 @@ int main(){
 		} while(rc == true);
 		*/
 		//receive telemetry from teensy and push it out to the db, one frame at a time
-		if((bytecount = i2c_getframestr(i2c_fd, buffer, maxbytes)) <= 0){
-			std::cout << "Error while reading from file" << std::endl;
+		if((bytecount = i2c_frametobufbin(i2c_fd, buffer, maxbytes)) <= 0){
+			if(bytecount == 0) std::cout << "No bytes received" << std::endl;
+			else std::cout << "Error while reading from file" << std::endl;
 			continue;
 		}
-	//MISSING: reformat data before sending it
 		//TEST:
-		std::cout << buffer  << std::endl;
-		sleep(1);
-		//END TEST
-		send(dbsender, buffer);
-		//if an interrupt is detected, break the loop /pun intended
-		if(s_interrupted){
-			break;
+		std::cout << "Frame content in hex:" << std::endl;
+		for(int i=0;i<bytecount;i++){
+			printf("%x ",buffer[i]);
 		}
+		std::cout << std::endl;
+		sleep(5);
+		//END TEST
+		sendframe(dbsender, buffer, bytecount);
 	}
 	close(i2c_fd);
 	//close() and destroy() of zmq are handled by destructors in language binding
