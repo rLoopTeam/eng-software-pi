@@ -20,17 +20,17 @@
 
 
 //function for sending the frame retrieved over i2c
-int sendframe(zmq::socket_t & socket, const unsigned char* const buffer, int size) {
+bool sendframe(zmq::socket_t & socket, const unsigned char* const buffer, int size) {
 	try {
-		zmq::message_t message(size);
-		memcpy (message.data(), buffer, size);
-		int bytessent = socket.send (message);
+		zmq::message_t message(size+1);
+		memcpy (message.data(), buffer, size+1);
+		bool bytessent = socket.send(message);
 		return bytessent;
 	}
 	catch (zmq::error_t e) {
 	//MISSING: investigate if EAGAIN throw is caught by language binding
 			std::cout << "ERROR while sending: " << zmq_strerror(e.num()) << std::endl;
-			return -1;
+			return false;
 	}
 }
 
