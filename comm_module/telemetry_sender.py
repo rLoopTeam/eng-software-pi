@@ -6,4 +6,4 @@ import node_list as nl
 import commlib as comm
 
 while True:
-	comm.sendTelemetry("Sup")
+	comm.sendTelemetry(["Sup"])

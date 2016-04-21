@@ -23,16 +23,20 @@ def main():
 	"""
 	TCP commander sender/receiver socket
 	"""
-	# groundstation_sender = ctx.socket(zmq.PUSH)
-	# groundstation_sender.bind(nl.get_address('gs_out'))
+	groundstation_sender = ctx.socket(zmq.PUSH)
+	groundstation_sender.bind(nl.get_address('gs_out'))
 
 	while True:
-		# command = "MOVE_FORWARD"
-		# groundstation_sender.send(command)
-		# print_out("GS: COMMAND: %s"%command)
+		# try:
+		# 	command = "MOVE_FORWARD"
+		# 	groundstation_sender.send(command)
+		# 	print_out("GS: COMMAND: %s"%command)
+		# except:
+		# 	pass
 	
 		message, addr = groundstation_receiver.recvfrom(1024) # buffer size is 1024 bytes
-		print_out("GS: TELEMETRY: %s"%message)
+		if message:
+			print("GS: TELEMETRY: %s"%message)
 
 		time.sleep(2)
 
