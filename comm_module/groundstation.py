@@ -24,20 +24,25 @@ def main():
 	TCP commander sender/receiver socket
 	"""
 	groundstation_sender = ctx.socket(zmq.PUSH)
-	groundstation_sender.bind(nl.get_address('gs_out'))
+	groundstation_sender.connect(nl.get_address('cmd_in'))
 
 	while True:
-		# try:
-		# 	command = "MOVE_FORWARD"
-		# 	groundstation_sender.send(command)
-		# 	print_out("GS: COMMAND: %s"%command)
-		# except:
-		# 	pass
-	
+		"""
+		Send command. Need to link this to an interface or a command line of sorts and probly separate the telemetry receiving and command code
+		"""
+		try:
+			command = "MOVE_FORWARD"
+			groundstation_sender.send(command)
+			print_out("GS: COMMAND: %s"%command)
+		except:
+			pass
+
+		"""
+		Receive telemetry
+		"""
 		message, addr = groundstation_receiver.recvfrom(1024) # buffer size is 1024 bytes
 		if message:
 			print_out("GS: TELEMETRY: %s"%message)
-
 		time.sleep(2)
 
 

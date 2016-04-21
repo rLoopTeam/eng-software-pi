@@ -1,7 +1,7 @@
 import zmq
 import sys
 import time
-from node_list import NodeList
+import node_list as nl
 
 def print_out ( str ):
 	sys.stdout.write( str )
@@ -10,12 +10,11 @@ def print_out ( str ):
 
 class main():
 
-	nodeList = NodeList()
 	ctx = zmq.Context()
 	cmd_receiver = ctx.socket(zmq.PULL)
-	cmd_receiver.bind(nodeList.get_node('cmd_in'))
+	cmd_receiver.bind(nl.get_address('cmd_in'))
 	cmd_sender = ctx.socket(zmq.PUSH)
-	cmd_sender.bind(nodeList.get_node('cmd_out'))
+	cmd_sender.bind(nl.get_address('cmd_out'))
 
 	while True:
 
