@@ -36,7 +36,7 @@ def main():
 	
 		message, addr = groundstation_receiver.recvfrom(1024) # buffer size is 1024 bytes
 		if message:
-			print("GS: TELEMETRY: %s"%message)
+			print_out("GS: TELEMETRY: %s"%message)
 
 		time.sleep(2)
 
