@@ -17,11 +17,14 @@ class main():
 	cmd_sender.bind(nl.get_address('cmd_out'))
 
 	while True:
+
 		try:	
 			cmd_message = cmd_receiver.recv(zmq.NOBLOCK)
 			print_out(cmd_message)
 		except zmq.ZMQError, e:
 			pass
+
+
 		time.sleep(1)
 			
 if __name__ == "__main__":

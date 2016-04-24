@@ -7,3 +7,4 @@ import commlib as comm
 
 while True:
 	comm.sendTelemetry(["Sup"])
+	time.sleep(1)
