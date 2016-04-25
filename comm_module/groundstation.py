@@ -48,14 +48,15 @@ print_out("=============================")
 print_out("")
 
 def comm_loop():
+	buff = 1024
 	while True:
 		"""
 		Receive telemetry
 		"""
 		try:
-			message = groundstation_receiver.recv(zmq.NOBLOCK) # buffer size is 1024 bytes
+			message = groundstation_receiver.recv(buff) # buffer size is 1024 bytes
 			if message:
-				print_out("Telemetry received: %s"%message)
+				print_out(message)
 		except:
 			pass
 		time.sleep(1)
