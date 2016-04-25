@@ -2,9 +2,9 @@ from Tkinter import *
 import tkMessageBox
 import threading
 import socket
+import time
 import zmq
 import sys
-import time
 import node_list as nl
 
 """
@@ -42,16 +42,20 @@ groundstation_receiver.setblocking(0)
 groundstation_sender = ctx.socket(zmq.PUSH)
 groundstation_sender.connect(nl.get_address('cmd_in'))
 
+print_out("=============================")
+print_out("=====   Groundstation   =====")
+print_out("=============================")
+print_out("")
+
 def comm_loop():
 	while True:
-		print_out("receive")
 		"""
 		Receive telemetry
 		"""
 		try:
 			message = groundstation_receiver.recv(zmq.NOBLOCK) # buffer size is 1024 bytes
 			if message:
-				print_out("GS: TELEMETRY: %s"%message)
+				print_out("Telemetry received: %s"%message)
 		except:
 			pass
 		time.sleep(1)

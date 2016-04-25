@@ -1,6 +1,6 @@
+import time
 import zmq
 import sys
-import time
 import node_list as nl
 
 def print_out ( str ):
@@ -15,11 +15,16 @@ class main():
 	cmd_receiver.bind(nl.get_address('cmd_in'))
 	cmd_sender = ctx.socket(zmq.PUSH)
 	cmd_sender.bind(nl.get_address('cmd_out'))
+	
+	print_out("============================")
+	print_out("=====  Command module  =====")
+	print_out("============================")
+	print_out("")
 
 	while True:
 		try:	
 			cmd_message = cmd_receiver.recv(zmq.NOBLOCK)
-			print_out(cmd_message)
+			print_out("Command received: %s"%cmd_message)
 		except zmq.ZMQError, e:
 			pass
 		time.sleep(1)
