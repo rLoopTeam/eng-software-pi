@@ -6,6 +6,7 @@ import time
 import zmq
 import sys
 import node_list as nl
+import commlib as comm
 
 """
 Setup variables and helper functions
@@ -19,15 +20,10 @@ def print_out( str ):
 def send_command(entryvar):
 	cmd = entryvar.get()
 	if bool(re.compile('^[a-z0-9\.]+$').match(cmd)):
-		groundstation_sender.send(cmd, zmq.NOBLOCK)
+		comm.sendCommand([cmd]) # comm library which has takes care of all the sockets for you
 		print_out("Command sent: %s"%cmd)
 	else:
 		tkMessageBox.showwarning("Wrong syntax", "You can only send commands made of letters and numbers")
-
-"""
-zmq
-"""
-ctx = zmq.Context()
 
 """
 Communication - setup sockets and define comm_loop
@@ -37,10 +33,6 @@ groundstation_receiver = socket.socket(	socket.AF_INET, # Internet
 										socket.SOCK_DGRAM) # UDP
 groundstation_receiver.bind((nl.get_address_as_tuple('gs_in')[1], nl.get_address_as_tuple('gs_in')[2]))
 groundstation_receiver.setblocking(0)
-
-#- TCP commander sender/receiver socket
-groundstation_sender = ctx.socket(zmq.PUSH)
-groundstation_sender.connect(nl.get_address('cmd_in'))
 
 print_out("=============================")
 print_out("=====   Groundstation   =====")
@@ -93,8 +85,6 @@ window.mainloop()
 Cleanup. !Not sure if needed!
 """
 groundstation_receiver.close() # not sure where to stick this
-groundstation_sender.close()
-		
 	
 
 """
