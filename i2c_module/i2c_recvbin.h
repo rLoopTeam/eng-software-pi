@@ -18,13 +18,13 @@
 
 //get checksum from the frame
 uint8_t getchecksum(const unsigned char* const buffer, uint16_t length){
-	return buffer[length-2];
+	return buffer[length-3];
 }
 
 //compute checksum
 uint8_t computechecksum(const unsigned char* const buffer, uint16_t length){
 	uint8_t checksum = 0;
-	for(uint16_t i=0;i<length-4;i++){
+	for(uint16_t i=0;i<length-5;i++){
 		checksum ^= buffer[i];
 	}
 	return checksum;
@@ -63,7 +63,7 @@ int i2c_frametobufbin(int &fd, unsigned char* const buffer, uint16_t buf_size){
   					uint16_t l = ((uint16_t)buf[0]<<8) | buf[1];
   					l = le16toh(l); //convert to host order from little endian
   					//std::cout << l << std::endl;
-  					length_total = l + 4;
+  					length_total = l + 5;
   					//create a buffer big enough for all the data from the frame
   					allbuf = new unsigned char[length_total];
   					allbuf[0] = I2C_ESCAPE;
@@ -87,13 +87,13 @@ int i2c_frametobufbin(int &fd, unsigned char* const buffer, uint16_t buf_size){
   					}
   				}
   			}
-  			//if we dont have a start of frame, continue the loop until we find one or rund out of tries
+  			//if we dont have a start of frame, continue the loop until we find one or run out of tries
 			else continue;
 	  	}
 	}
-	//write the useful stuff to the passed buffer
-	for(int i=4,j=0;i<length_total-4;i++,j++){
-		buffer[j] = allbuf[i];
+	//write the frame to the passed buffer
+	for(int i=0;i<length_total-1;i++){
+		buffer[i] = allbuf[i];
 		usefulcount++;
 	}
 	return usefulcount;
