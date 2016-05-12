@@ -19,7 +19,7 @@ def print_out( str ):
 
 def send_command(entryvar):
 	cmd = entryvar.get()
-	if bool(re.compile('^[a-z0-9\.]+$').match(cmd)):
+	if bool(re.compile('^[a-z0-9\._]+$').match(cmd)):
 		comm.sendCommand([cmd]) # comm library which has takes care of all the sockets for you
 		print_out("Command sent: %s"%cmd)
 	else:
