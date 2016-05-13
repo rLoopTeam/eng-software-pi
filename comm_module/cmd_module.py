@@ -1,4 +1,6 @@
 from datetime import datetime
+import subprocess
+import settings
 import random
 import time
 import zmq
@@ -10,6 +12,13 @@ def print_out ( str ):
 	sys.stdout.write( str )
 	sys.stdout.write( "\n" )
 	sys.stdout.flush()
+
+def update_teensy_firmware():
+	try:
+		ret = subprocess.call(["sudo -S python %sautoLoader.py %sremote.hex"%(settings.autoloader_script_location, settings.hex_location)])
+	except OSError:
+		ret = "Cannot run this command on windows. Or the script/hex might be missing"
+	return ret
 
 class main():
 
@@ -29,18 +38,18 @@ class main():
 			cmd_message = cmd_receiver.recv(zmq.NOBLOCK)
 			if (cmd_message != ""):
 				print_out("Command received")
-				if (cmd_message == 'control_brake'):
+				if (cmd_message == 'control_brake'): # action controlled brake function
 					print_out(cmd_message)
-					# action controlled brake function
-				elif (cmd_message == 'safe_brake'):
+					
+				elif (cmd_message == 'safe_brake'): # action safe brake function
 					print_out(cmd_message)
-					# action safe brake function
-				elif (cmd_message == 'aux_speed'):
+					
+				elif (cmd_message == 'aux_speed'): # set auxilliary speed function
 					print_out(cmd_message)
-					# set auxilliary speed function
-				elif (cmd_message == 'aux_turn'):
+					
+				elif (cmd_message == 'aux_turn'): # turn the pod using auxilliary propulsion function (might not be possible)
 					print_out(cmd_message)
-					# turn the pod using auxilliary propulsion function (might not be possible)
+					
 				elif (cmd_message == 'dump_log'):
 					print_out("Dumping log to file...")
 
@@ -57,9 +66,11 @@ class main():
 					f.close()
 					print_out("Done.")
 
-				elif (cmd_message == 'update_firmware'):
-					print_out(cmd_message)
-					# update teensy firmware function
+				elif (cmd_message == 'update_teensy_firmware'): # update teensy firmware function
+					print_out("Flashing Teensy...")
+					res = update_teensy_firmware()
+					print_out(res)
+
 				else:
 					print_out("Command not found: %s"%cmd_message)
 
@@ -67,6 +78,7 @@ class main():
 			pass
 
 		time.sleep(1)
-			
+		
+
 if __name__ == "__main__":
     main = main()
