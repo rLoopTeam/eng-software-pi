@@ -1,0 +1,99 @@
+body{
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
+
+body * {
+	color: grey;
+}
+
+.container{
+	margin: 15px;
+	border-radius: 0 15px 15px 15px;
+	width: 1200px;
+}
+
+/*
+Links
+*/
+a {
+	color: white;
+}
+
+/*
+panel
+*/
+.panel {
+	border-top: solid 1px grey;
+	padding-bottom: 20px;
+}
+.panel .label {
+	margin: 10px 0;
+	font-size: 12px;
+}
+
+/*
+Dial
+*/
+.dial {
+	
+}
+.dial img {
+
+}
+.dial .speed {
+	font-size: 34px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    font-weight: 600;
+    color: white;
+}
+
+.dial .units {
+	font-size: 19px;
+	position: absolute;
+    top: 60%;
+    left: 40%;
+    color: white;
+}
+
+
+/*
+Tabs
+*/
+ul.tabs{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+ul.tabs li{
+	background: rgb(10,107,238);
+	color: white;
+	display: inline-block;
+	padding: 5px 25px;
+	cursor: pointer;
+}
+
+ul.tabs li.current{
+	background: rgb(45,52,62);
+}
+
+ul.tabs li:first-child{
+	border-radius: 15px 0 0 0;
+}
+ul.tabs li:last-child{
+	border-radius: 0 15px 0 0;
+}
+
+.tab-content{
+	display: none;
+	background: rgb(45,52,62);
+	padding: 50px;
+	border-radius: 0 15px 15px;
+}
+
+.tab-content.current{
+	display: inherit;
+}
