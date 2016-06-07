@@ -1,0 +1,1 @@
+start python telemetry_sender.py
