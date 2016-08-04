@@ -1,7 +1,8 @@
 import zmq
-import sqlite3
-#import psycopg2
 import time
+
+#Set database to use
+database = "sqlite3"
 
 #####OPTIONS############
 module_in = "ipc://module_i2c"
@@ -54,8 +55,13 @@ QueryCache = []
 
 while 1:
     try:
-    	db_con = sqlite3.connect('LocalPod.db')
-        #db_con =  psycopg2.connect("dbname=%s user=%s" % (db_name, db_user))
+    	db_con = ""
+	if database == "postgres":
+	   import postgres 
+           db_con = psycopg2.connect("dbname=%s user=%s" % (db_name, db_user))
+	else:
+	   import sqlite3 
+	   db_con = sqlite3.connect('LocalPod.db')
         db_cursor = db_con.cursor()
         DBACTIVE = 1
     except:
