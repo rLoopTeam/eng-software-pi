@@ -1,6 +1,8 @@
 import zmq
-import psycopg2
 import time
+
+#Set database to use
+database = "sqlite3"
 
 #####OPTIONS############
 module_in = "ipc://module_i2c"
@@ -18,7 +20,7 @@ SensorName='TestSens'
 #####
 #GLOBAL SWITCH
 ZMQActive = 0
-POSTGRESACTIVE = 0
+DBACTIVE = 0
 
 #SOCKET
 
@@ -53,9 +55,15 @@ QueryCache = []
 
 while 1:
     try:
-        db_con =  psycopg2.connect("dbname=%s user=%s" % (db_name, db_user))
+    	db_con = ""
+	if database == "postgres":
+	   import postgres 
+           db_con = psycopg2.connect("dbname=%s user=%s" % (db_name, db_user))
+	else:
+	   import sqlite3 
+	   db_con = sqlite3.connect('LocalPod.db')
         db_cursor = db_con.cursor()
-        POSTGRESACTIVE = 1
+        DBACTIVE = 1
     except:
         print "Postgres is down, connection failed"
 
@@ -83,7 +91,8 @@ while 1:
 
         Attribute='TestA'
         value = float(1234)
-        db_cursor.execute("""INSERT INTO Data VALUES (select sid from Sensors where SensorName = {SensName}, select aid from Attributes where AttrName = {AttrName}, NOW(),{DataVal} );""",(SensName = SensorName, AttrName = Attribute, DataVal = value))
+	CurrentTS = time.time()
+        db_cursor.execute("""INSERT INTO Data VALUES (select sid from Sensors where SensorName = {SensName}, select aid from Attributes where AttrName = {AttrName}, {TimeStamp},{DataVal} );""",(SensName = SensorName, AttrName = Attribute, TimeStampe = CurrentTS, DataVal = value))
 	db_con.commit()
 
 #terminate db connection
