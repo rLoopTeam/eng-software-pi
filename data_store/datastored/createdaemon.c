@@ -22,7 +22,7 @@ void createdaemon(char* daemonname) {
 
 	//SIGNAL HANDLING goes here
 
-	//for off a second time
+	//fork off a second time
 	pid = fork();
 	if(pid < 0) {
 		exit(EXIT_FAILURE);	
