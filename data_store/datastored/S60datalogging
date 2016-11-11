@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Change the next 3 lines to suit where you install your script and what you want to call it
+DIR=/bin
+DAEMON='/usr/bin/datalogd'
+DAEMON_NAME=datalogd
+
+# Data should be written to the following device
+STORAGE='/dev/sdb1'
+
+# Add any command line options for your daemon here
+DAEMON_OPTS="testnode"
+
+# This next line determines what user the script runs as.
+# Root generally not recommended but necessary if you are using the Raspberry Pi GPIO from Python.
+DAEMON_USER=peter
+
+# The process ID of the script when it runs is stored here:
+PIDFILE=/var/run/$DAEMON_NAME.pid
+
+
+do_start () {
+    	printf "Checking if /mnt/data is existent. \n"
+	if mount|grep "/mnt/data" > /dev/null; then
+		printf "Found \n"
+		printf "Starting system $DAEMON_NAME daemon \n"
+		start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --startas $DAEMON -- $DAEMON_OPTS
+		printf $?
+	else
+		printf "Not mounted. Trying to mount... \n"
+		mount $STORAGE /mnt/data
+		if mount|grep "/mnt/data" > /dev/null; then
+			printf "Successfully mounted \n"
+			printf "Starting system $DAEMON_NAME daemon \n"
+			start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --startas $DAEMON -- $DAEMON_OPTS
+			printf $?
+		else
+			printf "Mounting failed. Start of $DAEMON_NAME daemon failed. \n"
+			exit
+		fi
+	fi
+}
+do_stop () {
+	printf "Stopping system $DAEMON_NAME daemon \n"
+	start-stop-daemon --stop --pidfile $PIDFILE --retry 10
+	printf $?
+	printf "Unmounting $STORAGE \n"
+	umount $STORAGE
+}
+
+case "$1" in
+
+    start|stop)
+        do_${1}
+        ;;
+
+    restart|reload|force-reload)
+        do_stop
+        do_start
+        ;;
+
+    *)
+        echo "Usage: /etc/init.d/$DAEMON_NAME {start|stop|restart}"
+        exit 1
+        ;;
+
+esac
+exit 0
