@@ -6,8 +6,17 @@
 
 #include "datastored.h"
 
-int main(){
-	createdaemon(DAEMONNAME);
+void sighandler(int signum){
+	syslog(LOG_NOTICE, "%s terminated by SIGTERM.", DAEMONNAME);
+	exit(EXIT_SUCCESS);
+}
+
+int main(int argc, char* argv[]){
+	assert( argc = 2);
+	char* nodename = argv[1];
+	signal(SIGTERM, sighandler);
+	//uncomment the next line if you want to compile this as a standalone daemon
+	//createdaemon(DAEMONNAME);
 	
 	syslog(LOG_NOTICE, DAEMONNAME " started.");
 
@@ -19,22 +28,29 @@ int main(){
 	rc = zmq_setsockopt(subTelemetry, ZMQ_SUBSCRIBE, "", 0);
 	assert( rc ==0);
 
+	uint8_t buffer2[5000];
+	int recvCount;
 	//main loop
 	while(1){
 		//create a new file every minute
 		time_t time_start = time(NULL);
 		char filename[255];
-		strftime(filename, sizeof(filename), "/mnt/data/tellog_%Y-%m-%d_%H:%M.txt", gmtime(&time_start));
+		strftime(filename, sizeof(filename), "/mnt/data/tellog_%Y-%m-%d_%H:%M.csv", gmtime(&time_start));
 		FILE *f;
 		f = fopen(filename,"a");
 		
 		//read from socket, write to file
+		/*recvCount = zmq_recv(subTelemetry, buffer2, 5000, 0);
+		for(int i=0;i<recvCount;i++){
+					
+		}*/
 		char* buffer = s_recv(subTelemetry);
-		fprintf(f,"%s\n",buffer);
+		fprintf(f,"%s,%s\n", nodename, buffer);
 		fclose(f);
 		free(buffer);
 	}	
 	
+	//We never get here, but ...
 	//close ZMQ-Socket
 	zmq_close(subTelemetry);
 	zmq_ctx_destroy(context);
