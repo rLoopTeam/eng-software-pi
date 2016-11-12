@@ -6,32 +6,45 @@ DAEMON='/usr/bin/datalogd'
 DAEMON_NAME=datalogd
 
 # Data should be written to the following device
-STORAGE='/dev/sdb1'
+STORAGE='/dev/sdb2'
+
+# which is to be mounted here. DO NOT CHANGE without changing the setting in the source files of the datalogd daemon and recompiling!
+DATA_LOCATION='/mnt/data'
+
+# Configuration files are stored in
+CONFIG_LOCATION="$DATA_LOCATION/config"
 
 # Add any command line options for your daemon here
-DAEMON_OPTS="testnode"
+DAEMON_OPTS=""
 
 # This next line determines what user the script runs as.
 # Root generally not recommended but necessary if you are using the Raspberry Pi GPIO from Python.
-DAEMON_USER=peter
+DAEMON_USER=root
 
 # The process ID of the script when it runs is stored here:
 PIDFILE=/var/run/$DAEMON_NAME.pid
 
-
+# get 
+set_opts () {
+	NODE_NAME=`cat $CONFIG_LOCATION/nodename | xargs`
+	printf "Running on Node $NODE_NAME.\n"
+	DAEMON_OPTS=$NODE_NAME
+}
 do_start () {
-    	printf "Checking if /mnt/data is existent. \n"
-	if mount|grep "/mnt/data" > /dev/null; then
+    	printf "Checking if $DATA_LOCATION is existent. \n"
+	if mount|grep "$DATA_LOCATION " > /dev/null; then
 		printf "Found \n"
 		printf "Starting system $DAEMON_NAME daemon \n"
+		set_opts
 		start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --startas $DAEMON -- $DAEMON_OPTS
 		printf $?
 	else
 		printf "Not mounted. Trying to mount... \n"
-		mount $STORAGE /mnt/data
-		if mount|grep "/mnt/data" > /dev/null; then
+		mount $STORAGE $DATA_LOCATION 
+		if mount|grep "$DATA_LOCATION" > /dev/null; then
 			printf "Successfully mounted \n"
 			printf "Starting system $DAEMON_NAME daemon \n"
+			set_opts
 			start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile --user $DAEMON_USER --chuid $DAEMON_USER --startas $DAEMON -- $DAEMON_OPTS
 			printf $?
 		else

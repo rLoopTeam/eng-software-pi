@@ -1,0 +1,5 @@
+
+
+Be aware that rI2CRX.h, rI2CRX.c and teensyByteOrder.h have to be kept up to date with the repo bsc-slave-tools.
+
+Also check, that the Parameters set in bash script S60datalogging and in datastored.h match and recompile.

@@ -1,14 +1,14 @@
 /*
- *	still needs sighandler to handle all!
- *
- *
+ *	Written for rloop
+ *	by
+ *	Peter S. Gschladt
  */
 
 #include "datastored.h"
 
 // this will point to the .csv
 FILE *f;
-char path[64] = "/mnt/data/";
+char path[64] = PATH;
 char filepath[128];
 
 void sighandler(int signum){
@@ -17,7 +17,7 @@ void sighandler(int signum){
 		
 		case SIGINT:	syslog(LOG_NOTICE, "%s terminated by SIGINT/User.", DAEMONNAME);exit(EXIT_SUCCESS);
 		
-		case SIGSEGV:	syslog(LOG_NOTICE, "%s terminated by SIGSEGV / /mnt/data inaccessible.", DAEMONNAME);exit(EXIT_FAILURE);
+		case SIGSEGV:	syslog(LOG_NOTICE, "%s terminated by SIGSEGV / PATH inaccessible.", DAEMONNAME);exit(EXIT_FAILURE);
 
 		case SIGUSR1:	syslog(LOG_NOTICE, "%s terminated by SIGUSR1. Nodename not specified.", DAEMONNAME);exit(EXIT_FAILURE);
 	}
@@ -55,30 +55,6 @@ void recvParam(struct rI2CRX_decParam decParam){
 
 	}
 	fclose(f);
-	/*debug code
-	    switch(decParam.type){
-
-		case rI2C_INT8: printf("\tINT8 %d\n",*(int8_t*)(decParam.val));break;
-
-		case rI2C_UINT8: printf("\tUINT8 %d\n",*(uint8_t*)(decParam.val));break;
-
-		case rI2C_INT16: printf("\tINT16 %d\n",*(int16_t*)(decParam.val));break;
-
-		case rI2C_UINT16: printf("\tUINT16 %d\n",*(uint16_t*)(decParam.val));break;
-
-		case rI2C_INT32: printf("\tINT32 %d\n",*(int32_t*)(decParam.val));break;
-
-		case rI2C_UINT32: printf("\tUINT32 %d\n",*(uint32_t*)(decParam.val));break;
-
-		case rI2C_INT64: printf("\tINT64 %ld\n",*(int64_t*)(decParam.val));break;
-
-		case rI2C_UINT64: printf("\tUINT64 %lu\n",*(uint64_t*)(decParam.val));break;
-
-		case rI2C_FLOAT: printf("\tFLOAT %f\n",*(float*)(decParam.val));break;
-
-		case rI2C_DOUBLE: printf("\tDOUBLE %f\n",*(double*)(decParam.val));break;
-
-	    }*/
 }
 //writes the gmt-timestamp to the log
 void gotAFrame(){
@@ -102,11 +78,7 @@ int main(int argc, char* argv[]){
 	signal(SIGSEGV, sighandler);
 	signal(SIGUSR1, sighandler);
 
-	//uncomment the next line if you want to compile this as a standalone daemon
-	//createdaemon(DAEMONNAME);
-	
 	syslog(LOG_NOTICE, DAEMONNAME " started.");
-
 
 	// Stick the nodename to the filepath
 	// we expect the node name to be in argv[1]
