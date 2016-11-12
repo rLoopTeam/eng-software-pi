@@ -26,7 +26,6 @@ void sighandler(int signum){
 }
 
 void recvParam(struct rI2CRX_decParam decParam){
-	f = fopen(filepath,"a");
 	fprintf(f,",%d",decParam.index);
 	
 	switch(decParam.type)
@@ -54,7 +53,6 @@ void recvParam(struct rI2CRX_decParam decParam){
 		case rI2C_DOUBLE: fprintf(f,",0x%02x,%f\n",rI2C_DOUBLE,*(double*)(decParam.val));break;
 
 	}
-	fclose(f);
 }
 //writes the gmt-timestamp to the log
 void gotAFrame(){
@@ -67,9 +65,10 @@ void gotAFrame(){
 	char timestamp[32];
 	strftime(timestamp, sizeof(timestamp), "%T", now);
 	fprintf(f,"%s:%ld",timestamp,nowsubsec.tv_usec);
+}
+void endFrame(){
 	fclose(f);
 }
-void endFrame(){}
 
 int main(int argc, char* argv[]){
 	//signal handling first
