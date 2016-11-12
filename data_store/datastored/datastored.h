@@ -20,7 +20,7 @@ void gotAFrame();
 void endFrame();
 
 #define DAEMONNAME "datalogd"
-#define PUBLISHER "tcp://127.0.0.1:3000"
+#define PUBLISHER "tcp://192.168.178.26:3000"
 
 
 

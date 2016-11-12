@@ -8,15 +8,25 @@
 
 // this will point to the .csv
 FILE *f;
-char filename[255];
+char path[64] = "/mnt/data/";
+char filepath[128];
 
 void sighandler(int signum){
-	syslog(LOG_NOTICE, "%s terminated by SIGTERM.", DAEMONNAME);
-	exit(EXIT_SUCCESS);
+	switch(signum){
+		case SIGTERM:	syslog(LOG_NOTICE, "%s terminated by SIGTERM.", DAEMONNAME);exit(EXIT_SUCCESS);
+		
+		case SIGINT:	syslog(LOG_NOTICE, "%s terminated by SIGINT/User.", DAEMONNAME);exit(EXIT_SUCCESS);
+		
+		case SIGSEGV:	syslog(LOG_NOTICE, "%s terminated by SIGSEGV / /mnt/data inaccessible.", DAEMONNAME);exit(EXIT_FAILURE);
+
+		case SIGUSR1:	syslog(LOG_NOTICE, "%s terminated by SIGUSR1. Nodename not specified.", DAEMONNAME);exit(EXIT_FAILURE);
+	}
+	
+	
 }
 
 void recvParam(struct rI2CRX_decParam decParam){
-	f = fopen(filename,"a");
+	f = fopen(filepath,"a");
 	fprintf(f,",%d",decParam.index);
 	
 	switch(decParam.type)
@@ -45,34 +55,65 @@ void recvParam(struct rI2CRX_decParam decParam){
 
 	}
 	fclose(f);
+	/*debug code
+	    switch(decParam.type){
+
+		case rI2C_INT8: printf("\tINT8 %d\n",*(int8_t*)(decParam.val));break;
+
+		case rI2C_UINT8: printf("\tUINT8 %d\n",*(uint8_t*)(decParam.val));break;
+
+		case rI2C_INT16: printf("\tINT16 %d\n",*(int16_t*)(decParam.val));break;
+
+		case rI2C_UINT16: printf("\tUINT16 %d\n",*(uint16_t*)(decParam.val));break;
+
+		case rI2C_INT32: printf("\tINT32 %d\n",*(int32_t*)(decParam.val));break;
+
+		case rI2C_UINT32: printf("\tUINT32 %d\n",*(uint32_t*)(decParam.val));break;
+
+		case rI2C_INT64: printf("\tINT64 %ld\n",*(int64_t*)(decParam.val));break;
+
+		case rI2C_UINT64: printf("\tUINT64 %lu\n",*(uint64_t*)(decParam.val));break;
+
+		case rI2C_FLOAT: printf("\tFLOAT %f\n",*(float*)(decParam.val));break;
+
+		case rI2C_DOUBLE: printf("\tDOUBLE %f\n",*(double*)(decParam.val));break;
+
+	    }*/
 }
 //writes the gmt-timestamp to the log
 void gotAFrame(){
-	f = fopen(filename,"a");
-	struct timeval 	nowsubsec;
-	struct tm now;
-	do{
-		time_t nowconvert = time(NULL);
-		now = *gmtime(&nowconvert);
-		gettimeofday(&nowsubsec, NULL);
-	}while(nowsubsec.tv_sec != now.tm_sec);
+	f = fopen(filepath,"a");
+	struct timeval nowsubsec;
+	struct tm* now;
+	gettimeofday(&nowsubsec, NULL);
+	now = gmtime((time_t*)&nowsubsec);
+	
 	char timestamp[32];
-	strftime(timestamp, sizeof(timestamp), "%T", &now);
+	strftime(timestamp, sizeof(timestamp), "%T", now);
 	fprintf(f,"%s:%ld",timestamp,nowsubsec.tv_usec);
 	fclose(f);
 }
 void endFrame(){}
 
-int main(int argc, char* argv[]){//int argc, char* argv[]
-	assert( argc = 2);
-	char* nodename = argv[1];
+int main(int argc, char* argv[]){
+	//signal handling first
 	signal(SIGTERM, sighandler);
+	signal(SIGINT, sighandler);
+	signal(SIGSEGV, sighandler);
+	signal(SIGUSR1, sighandler);
+
 	//uncomment the next line if you want to compile this as a standalone daemon
 	//createdaemon(DAEMONNAME);
 	
 	syslog(LOG_NOTICE, DAEMONNAME " started.");
+
+
+	// Stick the nodename to the filepath
+	// we expect the node name to be in argv[1]
+	if( argc != 2) raise(SIGUSR1);
+	strncat(path,argv[1],sizeof(argv[1]));
 	
-	//
+	//initialize everything for data frame processing
 	rI2CRX_begin();
 	
 	rI2CRX_recvDecParamCB = &recvParam;
@@ -90,20 +131,26 @@ int main(int argc, char* argv[]){//int argc, char* argv[]
 	uint8_t buffer2[5000];
 	int recvCount;
 	//main loop
-	while(1){
+	while(1){	
+	
 		//read from socket, write to file
 		recvCount = zmq_recv(subTelemetry, buffer2, 5000, 0);
-		for(int i=0;i<recvCount;i++){
-			//create a new file every minute
-			time_t time_start = time(NULL);
-			strftime(filename, sizeof(filename), "/mnt/data/tellog_%Y-%m-%d_%H:%M.csv", gmtime(&time_start));
-			//write the data to file
-			rI2CRX_receiveBytes(&buffer2[i],1);		
-		}
-		//char* buffer = s_recv(subTelemetry);
-		//fprintf(f,"%s,%s\n", nodename, buffer);
 		
-		//free(buffer);
+		for(int i=0;i<recvCount;i++){
+			//create a new filepath every minute
+			char filename[64];
+			time_t time_start = time(NULL);
+			strftime(filename, sizeof(filename), "_tellog_%Y-%m-%d_%H:%M.csv", gmtime(&time_start));
+			strncat(filepath, path, sizeof(path));
+			strncat(filepath, filename, sizeof(filename));
+			
+			//write the data to file
+			rI2CRX_receiveBytes(&buffer2[i],1);
+			
+			//clear the filename parts
+			memset(&filename,0,sizeof(filename));	
+			memset(&filepath,0,sizeof(filepath));	
+		}
 	}	
 	
 	//We never get here, but ...
