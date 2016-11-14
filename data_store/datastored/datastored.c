@@ -101,13 +101,14 @@ int main(int argc, char* argv[]){
 
 	uint8_t buffer2[5000];
 	int recvCount;
+	int i;
 	//main loop
 	while(1){	
 	
 		//read from socket, write to file
 		recvCount = zmq_recv(subTelemetry, buffer2, 5000, 0);
 		
-		for(int i=0;i<recvCount;i++){
+		for(i=0;i<recvCount;i++){
 			//create a new filepath every minute
 			char filename[64];
 			time_t time_start = time(NULL);
