@@ -32,25 +32,25 @@ void recvParam(struct rI2CRX_decParam decParam){
 
 	{
 
-		case rI2C_INT8: fprintf(f,",0x%02x,%d\n",rI2C_INT8,*(int8_t*)(decParam.val));break;
+		case rI2C_INT8: fprintf(f,",0x%02x,%d",rI2C_INT8,*(int8_t*)(decParam.val));break;
 
-		case rI2C_UINT8: fprintf(f,",0x%02x,%d\n",rI2C_UINT8,*(uint8_t*)(decParam.val));break;
+		case rI2C_UINT8: fprintf(f,",0x%02x,%d",rI2C_UINT8,*(uint8_t*)(decParam.val));break;
 
-		case rI2C_INT16: fprintf(f,",0x%02x,%d\n",rI2C_INT16,*(int16_t*)(decParam.val));break;
+		case rI2C_INT16: fprintf(f,",0x%02x,%d",rI2C_INT16,*(int16_t*)(decParam.val));break;
 
-		case rI2C_UINT16: fprintf(f,",0x%02x,%d\n",rI2C_UINT16,*(uint16_t*)(decParam.val));break;
+		case rI2C_UINT16: fprintf(f,",0x%02x,%d",rI2C_UINT16,*(uint16_t*)(decParam.val));break;
 
-		case rI2C_INT32: fprintf(f,",0x%02x,%d\n",rI2C_INT32,*(int32_t*)(decParam.val));break;
+		case rI2C_INT32: fprintf(f,",0x%02x,%d",rI2C_INT32,*(int32_t*)(decParam.val));break;
 
-		case rI2C_UINT32: fprintf(f,",0x%02x,%d\n",rI2C_UINT32,*(uint32_t*)(decParam.val));break;
+		case rI2C_UINT32: fprintf(f,",0x%02x,%d",rI2C_UINT32,*(uint32_t*)(decParam.val));break;
 
-		case rI2C_INT64: fprintf(f,",0x%02x,%ld\n",rI2C_INT64,*(int64_t*)(decParam.val));break;
+		case rI2C_INT64: fprintf(f,",0x%02x,%ld",rI2C_INT64,*(int64_t*)(decParam.val));break;
 
-		case rI2C_UINT64: fprintf(f,",0x%02x,%lu\n",rI2C_UINT64,*(uint64_t*)(decParam.val));break;
+		case rI2C_UINT64: fprintf(f,",0x%02x,%lu",rI2C_UINT64,*(uint64_t*)(decParam.val));break;
 
-		case rI2C_FLOAT: fprintf(f,",0x%02x,%f\n",rI2C_FLOAT,*(float*)(decParam.val));break;
+		case rI2C_FLOAT: fprintf(f,",0x%02x,%f",rI2C_FLOAT,*(float*)(decParam.val));break;
 
-		case rI2C_DOUBLE: fprintf(f,",0x%02x,%f\n",rI2C_DOUBLE,*(double*)(decParam.val));break;
+		case rI2C_DOUBLE: fprintf(f,",0x%02x,%f",rI2C_DOUBLE,*(double*)(decParam.val));break;
 
 	}
 }
