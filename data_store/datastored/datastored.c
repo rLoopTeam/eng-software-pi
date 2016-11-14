@@ -67,7 +67,7 @@ void gotAFrame(){
 	fprintf(f,"%s:%ld",timestamp,nowsubsec.tv_usec);
 }
 void endFrame(){
-	printf("\n");
+	fprintf(f,"\n");
 	fclose(f);
 }
 
