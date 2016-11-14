@@ -9,7 +9,7 @@ DAEMON_NAME=datalogd
 STORAGE='/dev/mmcblk0p2'
 
 # which is to be mounted here. DO NOT CHANGE without changing the setting in the source files of the datalogd daemon and recompiling!
-DATA_LOCATION='/mnt/data/'
+DATA_LOCATION='/mnt/data'
 
 # Configuration files are stored in
 CONFIG_LOCATION="$DATA_LOCATION/config"
