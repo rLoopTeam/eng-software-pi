@@ -22,7 +22,7 @@ void gotAFrame();
 void endFrame();
 
 #define DAEMONNAME "datalogd"
-#define PATH "/mnt/data/"
+#define PATH "/mnt/data/log"
 #define PUBLISHER "tcp://127.0.0.1:3000"
 
 
